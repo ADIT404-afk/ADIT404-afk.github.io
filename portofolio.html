@@ -277,7 +277,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.8)
+      background: rgba(0,0,0,0.8);
       z-index: 999;
       justify-content: center;
       align-items: center;
@@ -307,7 +307,7 @@
     .modal-box p {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.75rem;
-      color: : #00ffe7;
+      color: #00ffe7;
       letter-spacing: 1px;
     }
 
@@ -346,12 +346,10 @@
     <p class="section-label">// Projects</p>
     <div class="projects-grid">
       <div class="project-card">
-	<div class="cert-item" onclick="bukaModal()" style="cursor: pointer;">
         <div class="tag">Networking</div>
         <h3>Desain Jaringan VLSM</h3>
         <p>Perancangan topologi jaringan dengan metode VLSM untuk efisiensi penggunaan IP address.</p>
         <span class="status done">✓ Selesai</span>
-	</div>
       </div>
       <div class="project-card">
         <div class="tag">Linux</div>
@@ -365,7 +363,7 @@
         <p>Pemrograman mikrokontroler Arduino untuk kontrol input/output sensor dan aktuator dasar.</p>
         <span class="status wip">⟳ On Progress</span>
       </div>
-      <div class="project-card">
+      <div class="project-card" onclick="bukaModalWebsite()" style="cursor: pointer;">
         <div class="tag">Web Dev</div>
         <h3>Personal Portfolio Website</h3>
         <p>Website portofolio pribadi dengan HTML & CSS. Gw lagi ada di sini sekarang 👀</p>
@@ -376,7 +374,7 @@
     <div class="cert-section">
       <p class="section-label">// Sertifikat & Pencapaian</p>
       <div class="cert-list">
-        <div class="cert-item" onclick="bukaModal()" style="cursor: pointer;">
+        <div class="cert-item" onclick="bukaModalSekolah()" style="cursor: pointer;">
           <div>
             <div class="cert-name">Siswa TJKT Aktif</div>
             <div class="cert-issuer">SMK Master Indonesia, Bogor</div>
@@ -390,35 +388,36 @@
       <div class="dot"></div>
       <span>Open for PKL — Juli 2026</span>
     </div>
-    <div class="modal" id="modalSekolah">
-      <div class="modal-box">
-        <span class="modal-close" onclick="tutupModal()">❌</span>
-        <img src="img/Sekolah.jpg" alt="Foto disekolah" />
-        <p>SMK Master Indonesia, Bogor - TJKT 2023/2026</p>
-      </div>
+  </div>
+
+  <div class="modal" id="modalSekolah">
+    <div class="modal-box">
+      <span class="modal-close" onclick="tutupModalSekolah()">❌</span>
+      <img src="img/Sekolah.jpg" alt="Foto disekolah" />
+      <p>SMK Master Indonesia, Bogor - TJKT 2023/2026</p>
     </div>
-    <div class="modal" id="modalWebsite">
-      <div class="modal-box">
-        <span class="modal-close" onclick="tutupModal()">❌</span>
-        <img src="img/website.jpg" alt="Foto website" />
-        <p> Bukti Foto Website Pertama Gw</p>
-      </div>
+  </div>
+  <div class="modal" id="modalWebsite">
+    <div class="modal-box">
+      <span class="modal-close" onclick="tutupModalWebsite()">❌</span>
+      <img src="img/website.jpg" alt="Foto website" />
+      <p>Bukti Foto Website Pertama Gw</p>
     </div>
   </div>
   <script>
-    function bukaModal() {
+    function bukaModalSekolah() {
       document.getElementById('modalSekolah').classList.add('aktif');
     }
 
-    function tutupModal () {
+    function tutupModalSekolah () {
       document.getElementById('modalSekolah').classList.remove('aktif');
     }
 
-    function bukaModal() {
+    function bukaModalWebsite() {
       document.getElementById('modalWebsite').classList.add('aktif');
     }
 
-    function tutupModal () {
+    function tutupModalWebsite () {
       document.getElementById('modalWebsite').classList.remove('aktif');
     }
   </script>
