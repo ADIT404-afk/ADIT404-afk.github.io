@@ -346,10 +346,12 @@
     <p class="section-label">// Projects</p>
     <div class="projects-grid">
       <div class="project-card">
+	<div class="cert-item" onclick="bukaModal()" style="cursor: pointer;">
         <div class="tag">Networking</div>
         <h3>Desain Jaringan VLSM</h3>
         <p>Perancangan topologi jaringan dengan metode VLSM untuk efisiensi penggunaan IP address.</p>
         <span class="status done">✓ Selesai</span>
+	</div>
       </div>
       <div class="project-card">
         <div class="tag">Linux</div>
@@ -394,7 +396,14 @@
         <img src="img/Sekolah.jpg" alt="Foto disekolah" />
         <p>SMK Master Indonesia, Bogor - TJKT 2023/2026</p>
       </div>
-    </div> 
+    </div>
+    <div class="modal" id="modalWebsite">
+      <div class="modal-box">
+        <span class="modal-close" onclick="tutupModal()">❌</span>
+        <img src="img/website.jpg" alt="Foto website" />
+        <p> Bukti Foto Website Pertama Gw</p>
+      </div>
+    </div>
   </div>
   <script>
     function bukaModal() {
@@ -403,6 +412,14 @@
 
     function tutupModal () {
       document.getElementById('modalSekolah').classList.remove('aktif');
+    }
+
+    function bukaModal() {
+      document.getElementById('modalWebsite').classList.add('aktif');
+    }
+
+    function tutupModal () {
+      document.getElementById('modalWebsite').classList.remove('aktif');
     }
   </script>
 </body>
