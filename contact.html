@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak - Aditya Nugaraha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --cyan: #00ffe7;
+      --lime: #aaff00;
+      --text: #e0e0e0;
+      --muted: #555570;
+      --border: #1e1e2e;
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,231,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,231,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 30px 24px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    nav .logo {
+      font-size: 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    nav .links a {
+      margin-left: 20px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover, nav .links a.active { color: var(--cyan); }
+
+    .page-header {
+      margin-bottom: 50px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .page-header h1 span { color: var(--cyan); }
+
+    .page-header p {
+      margin-top: 10px;
+      color: #888;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Contact Cards */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 60px;
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 22px;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--cyan);
+      transform: translateX(4px);
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .icon-email   { background: rgba(0,255,231,0.1);  color: var(--cyan); }
+    .icon-ig      { background: rgba(225,48,108,0.15); color: #e1306c; }
+    .icon-wa      { background: rgba(37,211,102,0.15); color: #25d366; }
+    .icon-github  { background: rgba(255,255,255,0.07); color: #ccc; }
+
+    .contact-info .label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .contact-info .value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .contact-arrow {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    .contact-card:hover .contact-arrow { color: var(--cyan); }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.5s ease 0.2s both;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 8px var(--lime);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="index.html" class="logo">ADT.DEV</a>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="portofolio.html">Portofolio</a>
+        <a href="contact.html" class="active">Get In Touch</a>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <p class="section-label">// Contact</p>
+      <h1>Get In <span>Touch</span></h1>
+      <p>Mau kolaborasi, nanya sesuatu, atau sekedar say hi? Reach out aja lewat platform di bawah.</p>
+    </div>
+
+    <div class="contact-list">
+
+      <a href="mailto:gatronexite@gmail.com" class="contact-card">
+        <div class="contact-icon icon-email">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+        <div class="contact-info">
+          <div class="label">Email</div>
+          <div class="value">gatronexite@gmail.com</div>
+        </div>
+        <i class="fa-solid fa-arrow-right contact-arrow"></i>
+      </a>
+
+      <a href="https://instagram.com/lowkeyadyt" target="_blank" class="contact-card">
+        <div class="contact-icon icon-ig">
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <div class="contact-info">
+          <div class="label">Instagram</div>
+          <div class="value">@lowkeyadyt</div>
+        </div>
+        <i class="fa-solid fa-arrow-right contact-arrow"></i>
+      </a>
+
+      <a href="https://wa.me/+6285282502868" target="_blank" class="contact-card">
+        <div class="contact-icon icon-wa">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <div class="contact-info">
+          <div class="label">WhatsApp</div>
+          <div class="value">+62 852-8250-2868</div>
+        </div>
+        <i class="fa-solid fa-arrow-right contact-arrow"></i>
+      </a>
+
+      <a href="https://github.com/ADIT404-afk" target="_blank" class="contact-card">
+        <div class="contact-icon icon-github">
+          <i class="fa-brands fa-github"></i>
+        </div>
+        <div class="contact-info">
+          <div class="label">GitHub</div>
+          <div class="value">github.com/ADIT404-afk</div>
+        </div>
+        <i class="fa-solid fa-arrow-right contact-arrow"></i>
+      </a>
+
+    </div>
+
+    <div class="status-bar">
+      <div class="dot"></div>
+      <span>Open for PKL — Juli 2026</span>
+    </div>
+  </div>
+</body>
+</html>

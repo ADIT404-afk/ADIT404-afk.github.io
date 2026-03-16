@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio - Aditya Nugaraha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --cyan: #00ffe7;
+      --lime: #aaff00;
+      --text: #e0e0e0;
+      --muted: #555570;
+      --border: #1e1e2e;
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,231,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,231,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 30px 24px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    nav .logo {
+      font-size: 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    nav .links a {
+      margin-left: 20px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover, nav .links a.active { color: var(--cyan); }
+
+    .page-header {
+      margin-bottom: 50px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .page-header .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .page-header h1 span { color: var(--cyan); }
+
+    .page-header p {
+      margin-top: 10px;
+      color: #888;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Project Cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 60px;
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--cyan);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card .tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    .project-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .project-card p {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    .project-card .status {
+      margin-top: 14px;
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .project-card .status.done {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    .project-card .status.wip {
+      border-color: #ffaa00;
+      color: #ffaa00;
+    }
+
+    /* Sertifikat */
+    .cert-section {
+      margin-bottom: 60px;
+      animation: fadeUp 0.5s ease 0.2s both;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      transition: border-color 0.2s;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cert-item:hover { border-color: var(--cyan); }
+
+    .cert-item .cert-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .cert-item .cert-issuer {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .cert-item .cert-year {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--cyan);
+    }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.5s ease 0.3s both;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 8px var(--lime);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="index.html" class="logo">ADT.DEV</a>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="portofolio.html" class="active">Portofolio</a>
+        <a href="contact.html">Get in touch</a>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <p class="section-label">// My Work</p>
+      <h1>Porto<span>folio</span></h1>
+      <p>Kumpulan project, praktikum, dan hal-hal yang pernah gue kerjain.</p>
+    </div>
+
+    <p class="section-label">// Projects</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="tag">Networking</div>
+        <h3>Desain Jaringan VLSM</h3>
+        <p>Perancangan topologi jaringan dengan metode VLSM untuk efisiensi penggunaan IP address.</p>
+        <span class="status done">✓ Selesai</span>
+      </div>
+      <div class="project-card">
+        <div class="tag">Linux</div>
+        <h3>Setup Server di Termux</h3>
+        <p>Konfigurasi web server lokal menggunakan Python HTTP Server dan proot-distro di Android.</p>
+        <span class="status done">✓ Selesai</span>
+      </div>
+      <div class="project-card">
+        <div class="tag">Arduino</div>
+        <h3>Project Arduino I/O</h3>
+        <p>Pemrograman mikrokontroler Arduino untuk kontrol input/output sensor dan aktuator dasar.</p>
+        <span class="status done">✓ Selesai</span>
+      </div>
+      <div class="project-card">
+        <div class="tag">Web Dev</div>
+        <h3>Personal Portfolio Website</h3>
+        <p>Website portofolio pribadi dengan HTML & CSS. Lo lagi ada di sini sekarang 👀</p>
+        <span class="status wip">⟳ On Progress</span>
+      </div>
+    </div>
+
+    <div class="cert-section">
+      <p class="section-label">// Sertifikat & Pencapaian</p>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div>
+            <div class="cert-name">Siswa TJKT Aktif</div>
+            <div class="cert-issuer">SMK Master Indonesia, Bogor</div>
+          </div>
+          <div class="cert-year">2023–2026</div>
+        </div>
+        <div class="cert-item">
+          <div>
+            <div class="cert-name">Tambahkan Sertifikat Lo Di Sini</div>
+            <div class="cert-issuer">Nama Lembaga / Platform</div>
+          </div>
+          <div class="cert-year">2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div class="dot"></div>
+      <span>Open for PKL — Juli 2026</span>
+    </div>
+  </div>
+</body>
+</html>

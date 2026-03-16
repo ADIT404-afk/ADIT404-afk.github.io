@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditya Nugaraha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --cyan: #00ffe7;
+      --lime: #aaff00;
+      --text: #e0e0e0;
+      --muted: #555570;
+      --border: #1e1e2e;
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,231,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,231,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 30px 24px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    nav .logo {
+      font-size: 1rem;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--cyan);
+      letter-spacing: 2px;
+    }
+
+    nav .links a {
+      margin-left: 20px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover { color: var(--cyan); }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 70px;
+      flex-wrap: wrap;
+    }
+
+    .hero-photo {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-photo img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 20px rgba(0,255,231,0.2);
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px dashed var(--cyan);
+      opacity: 0.4;
+      animation: spin 12s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero-text h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .hero-text h1 span { color: var(--cyan); }
+
+    .hero-text .role {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--lime);
+      margin-top: 8px;
+      letter-spacing: 2px;
+    }
+
+    .hero-text .bio {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: #888;
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .hero-text .cta-group {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #000;
+      font-weight: bold;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--lime);
+      box-shadow: 0 0 16px rgba(170,255,0,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0,255,231,0.08);
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 60px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .skill-card .skill-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .skill-card .skill-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--cyan);
+      margin-top: 4px;
+      opacity: 0.7;
+    }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 8px var(--lime);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero, .skills-grid, .status-bar {
+      animation: fadeUp 0.6s ease both;
+    }
+    .skills-grid { animation-delay: 0.15s; }
+    .status-bar { animation-delay: 0.3s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <span class="logo">ADT.DEV</span>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="portofolio.html">Portofolio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-photo">
+        <img src="img/Adit.jpg" alt="Foto Aditya Nugaraha" />
+      </div>
+      <div class="hero-text">
+        <p class="role">// Network Engineer in Training</p>
+        <h1>Aditya <span>Nugaraha</span></h1>
+        <p class="bio">
+          Siswa TJKT di SMK Master Indonesia, Bogor. Passionate di bidang jaringan komputer, subnetting, dan Linux. Currently preparing for NOC & Network Engineer career.
+        </p>
+        <div class="cta-group">
+          <a href="portofolio.html" class="btn btn-primary">Lihat Portofolio</a>
+          <a href="contact.html" class="btn btn-outline">Hubungi Saya</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label">// Skills & Tools</p>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-name">Subnetting & VLSM</div><div class="skill-tag">Networking</div></div>
+      <div class="skill-card"><div class="skill-name">Linux CLI</div><div class="skill-tag">OS</div></div>
+      <div class="skill-card"><div class="skill-name">IPv4 / IPv6</div><div class="skill-tag">Protocol</div></div>
+      <div class="skill-card"><div class="skill-name">NAT & DNS</div><div class="skill-tag">Networking</div></div>
+      <div class="skill-card"><div class="skill-name">Termux</div><div class="skill-tag">Tools</div></div>
+      <div class="skill-card"><div class="skill-name">Arduino</div><div class="skill-tag">Programming</div></div>
+    </div>
+
+    <div class="status-bar">
+      <div class="dot"></div>
+      <span>Open for PKL — Juli 2026</span>
+    </div>
+  </div>
+</body>
+</html>
