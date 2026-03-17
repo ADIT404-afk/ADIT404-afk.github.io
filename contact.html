@@ -120,7 +120,8 @@
     .contact-card {
       display: flex;
       align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 12px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -160,7 +161,7 @@
     }
 
     .contact-info .value {
-      font-size: 0.95rem;
+      font-size: 0.80rem;
       font-weight: 700;
       color: var(--text);
     }
@@ -171,6 +172,10 @@
       font-size: 0.8rem;
       transition: color 0.2s;
     }
+
+    .fa-arrow-right {
+      color: #00ffe7;
+}
 
     .contact-card:hover .contact-arrow { color: var(--cyan); }
 
