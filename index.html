@@ -343,6 +343,16 @@
       color: #00ffe7;
     }
 
+    .cursor {
+      color: var(--cyan);
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {opacity: 1;}
+      50% {opacity: 0;}
+    }
+
   </style>
 </head>
 <body>
@@ -361,8 +371,8 @@
         <img src="img/Adit.jpg" alt="Foto Aditya Nugaraha" />
       </div>
       <div class="hero-text">
-        <p class="role">// Network Engineer in Training</p>
-        <h1>Aditya <span>Nugaraha</span></h1>
+        <p class="role"><span id="typing-text"></span><span class="cursor">|</span></p>
+        <h1>Aditya <span>Nugaraha</span></h1> 
         <p class="bio">
           Siswa TJKT di SMK Master Indonesia, Bogor. Passionate di bidang jaringan komputer, subnetting, dan Linux. Currently preparing for NOC & Network Engineer career.
         </p>
@@ -437,6 +447,20 @@
     document.getElementById('modalTermux').addEventListener('click', function(e) {
       if (e.target === this) tutupModalTermux();
     });
+    // typing text
+    const text = "// Network Engiener in Training";
+    const el = document.getElementById('typing-text');
+    let i = 0;
+
+    function type () {
+      if (i < text.length) {
+        el.textContent += text[i];
+        i++;
+        setTimeout(type, 60);
+      }
+    }
+
+    window.onload = type;
   </script>
 </body>
 </html>
