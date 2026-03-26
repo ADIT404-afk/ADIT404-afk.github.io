@@ -333,7 +333,7 @@
       <div class="links">
         <a href="index.html">Home</a>
         <a href="portofolio.html" class="active">Portofolio</a>
-        <a href="contact.html">Get in touch</a>
+        <a href="contact.html">Get In Touch</a>
         <a href="https://ADIT404-afk.github.io/termux-docs">Seputar Termux</a>
       </div>
     </nav>
@@ -421,6 +421,14 @@
     function tutupModalWebsite () {
       document.getElementById('modalWebsite').classList.remove('aktif');
     }
+
+    // Klik di luar modal = tutup
+    document.getElementById('modalSekolah').addEventListener('click', function(e) {
+      if (e.target === this) tutupModalSekolah();
+    });
+    document.getElementById('modalWebsite').addEventListener('click', function(e) {
+      if (e.target === this) tutupModalWebsite();
+    });
   </script>
 </body>
 </html>
